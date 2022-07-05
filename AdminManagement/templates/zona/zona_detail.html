@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 90%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <br>
+
+        <h2 class="text-primary">Consulta detalhada da zona {{ object.numero_da_zona }}</h2>
+        <br>
+        <p>Número da zona: {{ object.numero_da_zona }}</p>
+        <br>
+        <p>Número de lugares: {{ object.lugares }}</p>
+        <br>
+        <p>Tipo da zona: {{ object.tipo_de_zona }}</p>
+
+        <hr>
+        {% if request.user.is_staff is True %}
+        <form action="update/">
+            <p>Para editar esta zona clique em: <input class="btn btn-sm btn-primary" type="submit" value="Editar"/></p>
+        </form>
+
+        <br>
+
+        <form action="delete/">
+            <p>Para apagar esta zona clique em: <input class="btn btn-sm btn-primary" type="submit" value="Apagar"/></p>
+        </form>
+
+        {% endif %}
+        <br>
+
+        <form action="lugar/">
+            <p>Para ver os lugares desta zona clique em: <input class="btn btn-sm btn-primary" type="submit" value="Lugares"/></p>
+        </form>
+
+        <br>
+
+        <form action="../">
+            <input class="btn btn-md btn-primary" style="margin-left: 5%" type="submit" value="Voltar" />
+        </form>
+    </body>
+</html>
+{% endblock %}

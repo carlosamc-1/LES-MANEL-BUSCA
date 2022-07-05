@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 90%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <form style='margin-top: 20%' action='.' method='POST'>{% csrf_token %}
+            <h2 class="text-primary">Tem mesmo a certeza que deseja apagar o lugar {{ object.numero_do_lugar }}?</h2>
+            <br>
+            <p style="margin-left: 45%;"><input class="btn btn-lg btn-success" type='submit' value='Sim' />&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-lg btn-danger" href='../'>Não</a></p></p>
+        </form>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 90%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <br>
+
+        <h2 class="text-primary">Consulta detalhada do parque {{ object.nome }}</h2>
+        <br>
+        <p>Nome: {{ object.nome }}</p>
+        <br>
+        <p>Capacidade: {{ object.capacidade }}</p>
+        <br>
+        <p>Zonas: {{ object.zonas }}</p>
+        <br>
+        <p>Estado: {{ object.estado }}</p>
+        <br>
+        <p>Morada: {{ object.morada }}</p>
+        <br>
+        <p>Código postal: {{ object.codigo_postal }}</p>
+        <br>
+        <p>Cidade: {{ object.cidade }}</p>
+        <br>
+        {% if object.foto.url != None %}
+        <p>Foto: <br><img class="h-75 border border-dark rounded" height="150px" width="300px" src="{{ object.foto.url }}"/></p>
+        {% endif %}
+
+        <hr>
+        {% if request.user.is_staff is True %}
+
+        <form action="update/">
+            <p>Para editar este parque clique em: <input class="btn btn-sm btn-primary" type="submit" value="Editar"/></p>
+        </form>
+
+        <br>
+
+        <form action="delete/">
+            <p>Para apagar este parque clique em: <input class="btn btn-sm btn-primary" type="submit" value="Apagar"/></p>
+        </form>
+
+        {% endif %}
+        <br>
+
+        <form action="zona/">
+            <p>Para ver as zonas deste parque clique em: <input class="btn btn-sm btn-primary" type="submit" value="Zonas"/></p>
+        </form>
+
+        <br>
+
+        <form action="../">
+            <input class="btn btn-md btn-primary" style="margin-left: 5%" type="submit" value="Voltar" />
+        </form>
+        <br>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 90%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <br>
+
+        <h2 class="text-primary">Consulta detalhada do lugar {{ object.numero_do_lugar }}</h2>
+        <br>
+        <p>Número do lugar: {{ object.numero_do_lugar }}</p>
+        <br>
+        <p>Estado: {{ object.estado }}</p>
+
+        <hr>
+        {% if request.user.is_staff is True %}
+        <form action="update/"> 
+            <p>Para editar este lugar clique em: <input class="btn btn-sm btn-primary" type="submit" value="Editar"/></p>
+        </form>
+
+        <br>
+
+        <form action="delete/">
+            <p>Para apagar este lugar clique em: <input class="btn btn-sm btn-primary" type="submit" value="Apagar"/></p>
+        </form>
+        {% endif %}
+        <br>
+
+        <form action="../">
+            <input class="btn btn-md btn-primary" style="margin-left: 5%" type="submit" value="Voltar" />
+        </form>
+    </body>
+</html>
+{% endblock %}
