@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+        p, h2 {
+            width: 90%;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            color: black;
+        }
+        .multipleF, .dateF, .selectF, .textF {
+            outline: none;
+            border: 3px double black;
+            width: 35%;
+            color: #757575;
+            border-radius: 5px;
+        }
+        .radioF {
+            color: black;
+        }
+    </style>
+</head>
+<script>
+    function Hide() {
+        if(document.querySelector(`input[type="radio"][name=periodicidade]:checked`).value == "diário") {
+            var a = document.getElementById('id_dias')
+            var b = a.parentNode
+            b.style.display = "none"
+        } else {
+            var a = document.getElementById('id_dias')
+            var b = a.parentNode
+            b.style.display = ""
+        }
+    }
+    
+    window.onload = function() {
+        document.getElementById('id_periodicidade').onchange = Hide;
+    };
+</script>
+
+<form method="POST"> {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-sm btn-primary" style="margin-left: 5%" type='submit' value='Criar' />
+</form>
+<br>
+<a class="btn btn-sm btn-primary" style="margin-left: 5%" href="{% url 'PaymentManagement:options' %}">Voltar à página principal</a>
+{% endblock %}

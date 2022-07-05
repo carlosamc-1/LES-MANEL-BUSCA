@@ -1,0 +1,4 @@
+{% if record.valido == None %}
+    <a class="btn btn-success btn-sm" href="{% url 'PaymentManagement:contrato-validate-aprove' id=record.id %}">Aprovar Contrato</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'PaymentManagement:contrato-validate-desaprove' id=record.id %}">Desaprovar</a>
+{% endif %}

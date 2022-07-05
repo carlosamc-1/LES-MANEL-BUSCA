@@ -1,0 +1,9 @@
+<h1>Selecione a operação que pretende efetuar</h1>
+
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:contrato-list' %}">Ver Contratos</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:contrato-parque' %}">Criar Contratos</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:reserva-pay' id=3 %}">Pagar Reserva</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:registo-pay' id=1 %}">Pagar Registo</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:fatura' %}">Ver Faturas</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:payment' %}">Ver Pagamentos</a></button>
+<button><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:reclamacao-list' %}">Ver Reclamações</a></button>

@@ -1,0 +1,36 @@
+{% include "base.html"%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar parque</title>
+
+    {% load static %}
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/bootstrap.bundle.min.js' %}" rel="stylesheet">
+
+</head>
+<body>
+
+  {% include "main/includes/messages.html" %}
+
+    <h2 class="text-center" style="padding: 1em">Escolha o parque em que pretende criar o contrato:</h2>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                        <img class="h-75 border border-dark rounded p-4" height="150px" width="300px" src="static/main/img/{{ parque.foto }}">
+                        <h2><a href="{% url 'PaymentManagement:contrato-pay-card' id=id payid=payid %}">{{ id }}</a></h2>
+                </div>
+                <div class="col-md-3 text-center">
+                    <img class="h-75 border border-dark rounded p-4" height="150px" width="300px" src="static/main/img/{{ parque.foto }}">
+                    <h2><a href="{% url 'PaymentManagement:contrato-pay-reference' id=id payid=payid %}">{{ payid }}</a></h2>
+            </div>
+                <a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:options' %}">Voltar à página principal</a>
+            </div>
+        </div>
+
+</body>
+</html>
+{% endblock %}

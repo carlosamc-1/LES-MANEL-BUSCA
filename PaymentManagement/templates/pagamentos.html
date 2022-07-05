@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+    <body>
+        <table>
+            <tr>
+              <th>Montante</th>
+              <th>Estado</th>
+              <th>Tipo</th>
+              <th>Fatura</th>
+            </tr>
+        {% for pagamento in object_list %}
+            <tr>
+                <td>{{pagamento.montante}}</td>
+                <td>{{pagamento.estado_do_pagamento}}</td>
+                {% if pagamento.contratoid %}
+                    <td>Contrato {{pagamento.contratoid.id}}</td>
+                {% endif %}
+                {% if pagamento.reservaid %}
+                    <td>Reserva {{pagamento.reservaid.id}}</td>
+                {% endif %}
+                {% if pagamento.registoid %}
+                    <td>Registo {{pagamento.registoid.id}}</td>
+                {% endif %}
+                {% if pagamento.id in faturas %}
+                    <td><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:fatura' %}">Ver Fatura</a></td>
+                {% else %}
+                    <td><a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:fatura-emit' id=pagamento.id %}">Emitir Fatura</a></td>
+                {% endif %}
+
+            </tr>
+        {% endfor %}
+    </body>
+    <a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:options' %}">Voltar à página principal</a>
+</html>

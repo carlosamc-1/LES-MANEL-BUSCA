@@ -1,0 +1,17 @@
+{% include "base.html"%}
+{% block content %}
+<head>
+    <style>
+      p {
+          margin-left: 40%;
+      }
+    </style>
+</head>
+<body>
+    <p>Referência: {{referencia}}</p>
+    <p>Entidade: {{entidade}}</p>
+    <p>Total: {{montante}}€</p>
+</body>
+{% endblock %}
+<a class="btn btn-sm btn-primary" style="margin-left: 40%" href="{% url 'PaymentManagement:contrato-list' %}">Continuar</a>
+<a class="btn btn-sm btn-primary" style="margin-left: 5%" href="{% url 'PaymentManagement:contrato-list' %}">Comprovar</a>

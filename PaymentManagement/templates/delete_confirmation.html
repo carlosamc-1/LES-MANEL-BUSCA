@@ -1,0 +1,6 @@
+<form method="POST"> {% csrf_token %}
+    <p>Quer mesmo apagar o contrato?</p>
+    <input type="submit" value="Sim"/>
+</form>
+<a href={% url 'PaymentManagement:contrato-list' %}><button>Não</button></a>
+<a class="btn btn-info btn-sm" href="{% url 'PaymentManagement:options' %}">Voltar à página principal</a>
