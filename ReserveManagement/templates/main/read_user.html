@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 70%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+            p {
+                color: black;
+                text-align: center;
+            }
+            .field, .field1 {
+                outline: none;
+                border: 3px double black;
+                width: 9%;
+                color: #757575;
+                border-radius: 5px;
+            }
+            .field1 {
+                width: 15%;
+            }
+            .field2 {
+                outline: none;
+                border: 3px double black;
+                width: 15%;
+                color: #757575;
+                background-color: white;
+            }
+            ul {
+                color: red;
+                margin-left: 25.75%;
+                margin-top: 2.5%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h2 style="margin-top: 10%; color: #009cff; text-align: center;">Ecolha uma Matrícula</h2>
+
+        <br>
+
+        <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+            <p>{{ form.matricula.errors }}</p>
+
+            <br>
+            <br>
+        
+            <p>Matrícula: {{ form.matricula }}</p>
+            
+            <br>
+            <br>
+            <br>
+
+            <button class="btn btn-primary" style="margin-left:40%;" type="submit">Confirmar</button><a href="/"><input class="btn btn-primary" style="margin-left:1.5%; width:10%" value="Voltar"></a>
+        </form>    
+    </body>
+</html>
+
+{% endblock %} 

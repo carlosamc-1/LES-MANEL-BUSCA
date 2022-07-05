@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load render_table from django_tables2 %}
+<html>
+    <head>
+        <style>
+            table {
+                width: 90%;
+                margin: auto;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+            } 
+
+            tr:nth-child() {
+                background-color: #dddddd;
+            }
+            h2 {
+                width: 90%;
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <br>
+
+        <h2 class="text-primary">Lista de reservas</h2>
+        
+        <br>
+        
+        {% render_table table %}
+        
+        <br>
+        
+        <form action="/">
+            <input class="btn btn-sm btn-primary" style="margin-left: 5%" type="submit" value="Voltar" />
+        </form>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h2 style="margin-top: 20%; color: #009cff; text-align: center;">Tem a certeza que quer apagar esta tabela de preços?</h2>
+
+        <br>
+
+        <form method="POST"> {% csrf_token %}
+            <button class="btn btn-success btn-lg" style="margin-left:42.5%; width:8%" type="submit">Sim</button> <a href="../read_table"><input class="btn btn-danger btn-lg" style="margin-left:1.5%; width:8%" value="Não"></a>
+        </form>   
+    </body>
+</html>
+
+{% endblock %}

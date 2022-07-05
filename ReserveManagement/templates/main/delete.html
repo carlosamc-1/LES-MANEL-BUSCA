@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" style="margin-top:1%; position: absolute">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <h2 style="margin-top: 20%; color: #009cff; text-align: center;">Tem a certeza que quer apagar esta reserva?</h2>
+
+        <br>
+
+        <form method="POST"> {% csrf_token %}
+            <button class="btn btn-success btn-lg" style="margin-left:42.5%; width:8%" type="submit">Sim</button> <a href="/"><input class="btn btn-danger btn-lg" style="margin-left:1.5%; width:8%" value="Não"></a>
+        </form>    
+    </body>
+</html>
+
+{% endblock %} 

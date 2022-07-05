@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            p, h2 {
+                width: 90%;
+                margin: auto;
+            }
+            h2 {
+                text-align: center;
+            }
+            p {
+                color: black;
+            }
+            .field, .field1 {
+                outline: none;
+                border: 3px double black;
+                width: 35%;
+                color: #757575;
+                border-radius: 5px;
+            }
+            .field1 {
+                width: 10%;
+            }
+            .field2 {
+                outline: none;
+                border: 3px double black;
+                width: 15%;
+                color: #757575;
+                background-color: white;
+            }
+            ul {
+                color: red;
+                margin-left: 3.75%;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <br>
+
+        <h2 class="text-primary">Criar Tabela de Preços</h2>
+        
+        <br>
+        
+        <form method='POST' enctype="multipart/form-data">{% csrf_token %}
+            
+            <p>Parque: {{ form.parqueid }}</p>
+            <br>
+            <p>{{ form.preço_por_hora.errors }}</p>
+            <p>Preço por hora: {{ form.preco_por_hora }}</p>
+            <br>
+            <p>{{ form.taxa_por_hora.errors }}</p>
+            <p>Taxa por hora: {{ form.taxa_por_hora }}</p>
+            <br>
+            <p>{{ form.taxa_noturna.errors }}</p>
+            <p>Taxa noturna: {{ form.taxa_noturna }}</p>
+            <br>
+            <p>{{ form.taxa_da_multa.errors }}</p>
+            <p>Taxa da multa: {{ form.taxa_da_multa }}</p>
+            <br>
+            <p>{{ form.preco_contrato_dia.errors }}</p>
+            <p>Preço do contrato/dia: {{ form.preco_contrato_dia }}</p>
+            <br>
+            <p>{{ form.preco_contrato_diurno.errors }}</p>
+            <p>Preco do contrato diurno: {{ form.preco_contrato_diurno }}</p>
+            <br>
+            <p>{{ form.preco_contrato_noturno.errors }}</p>
+            <p>Preco do contrato noturno: {{ form.preco_contrato_noturno }}</p>
+            <br>
+
+            <input class="btn btn-sm btn-primary" style="margin-left: 5%" type='submit' value='Criar' />
+        </form>
+        
+        <br>
+        
+        <form action="/">
+            <input class="btn btn-sm btn-primary" style="margin-left: 5%" type="submit" value="Cancelar" />
+        </form>
+
+    </body>
+</html>
+{% endblock %}
