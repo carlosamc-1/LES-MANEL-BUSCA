@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar parque</title>
+
+    {% load static %}
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/bootstrap.bundle.min.js' %}" rel="stylesheet">
+
+</head>
+<body>
+
+  {% include "main/includes/messages.html" %}
+
+    <h2 class="text-center" style="padding: 1em">Escolha o parque em que pretende entrar:</h2>
+
+        <div class="container-fluid">
+            <div class="row">
+                {% for parque in parques %}
+                <div class="col-md-3 text-center">
+                        <img class="h-75 border border-dark rounded p-4" height="150px" width="300px" src="static/main/img/{{ parque.foto }}">
+                        <h2><a href="{% url 'OperationManagement:entrar_parque_form' parque_id=parque.id %}">{{ parque.nome }}</a></h2>
+                </div>
+                 {% endfor %}
+            </div>
+        </div>
+
+</body>
+</html>

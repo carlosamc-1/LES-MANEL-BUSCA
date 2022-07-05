@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar registo de entradas</title>
+
+    {% load static %}
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+        <a class="btn btn-danger" href="{% url 'OperationManagement:index' parque_id=parques.id %}" style="color: white; margin-right: 1em" type="submit">Voltar</a>
+
+        <div class="container">
+            {% for registo in registos %}
+                {{ registo.data_de_entrada }}  <a class="btn btn-primary" href="{% url 'OperationManagement:reclamar_fatura' parque_id=parques.id fatura_id=fatura.id %}" style="color: white; margin-right: 1em" type="submit">Fazer reclamação</a>
+            {% endfor %}
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+    <title>{{ parques.nome }} - Entrar</title>
+</head>
+<body>
+
+{% include "main/includes/messages.html" %}
+
+ <div class="container">
+
+        <div class="container">
+            <h3 style="text-align: center; padding: 1em">Bem-vindo a {{ parques.nome }}!</h3>
+        </div>
+
+         <div class="container-fluid" style="padding: 0.5em">
+             <div class="row">
+
+                 <div class="col-md-4">
+                     </div>
+                 <div class="col-md-4 text-center" style="padding: 2em">
+                     <form method="POST">
+                        {% csrf_token %}
+
+                         {{ form }}
+                         <br>
+                         <a class="btn btn-danger" style="color: white; margin-right: 2em; margin-top: 2em" href="/">Voltar</a>
+                         <button class="btn btn-primary" style="margin-top: 2em" type="submit">Entrar</button>
+                     </form>
+
+                 <div>
+                 <div class="col-md-4">
+                 </div>
+
+             </div>
+         </div>
+
+</div>
+
+</body>
+</html>

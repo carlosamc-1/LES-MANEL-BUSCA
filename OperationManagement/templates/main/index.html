@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                       <a href="{% url 'OperationManagement:sair_parque_form' parque_id=parque.id %}">
+                           <button style="margin-top: 1em" class="btn btn-danger">Sair de {{ parque.nome }}</button>
+                       </a>
+
+                    <h3 style="text-align: center">{{ parque.nome }}</h3>
+
+                </div>
+            </div>
+        </div>
+
+        {% include "main/includes/messages.html" %}
+
+        <div class="container">
+            <div class="row">
+                <h2 style="padding: 2em">Lista de zonas</h2>
+                    {% for zona in zonas %}
+                    <div class="col-md-3" style="padding: 1em">
+                                <div class="h-100 border border-dark rounded p-4">
+                                    {{ zona.numero_da_zona }}
+                                    <br>
+                                    Lugares:  {{ zona.lugares }}
+                                    <br>
+                                    <div class="container-fluid text-center">
+                                        <a class="btn btn-success" style="color: white;margin-bottom: 1em; margin-top: 1em" href="{% url 'OperationManagement:associar_lugar' parque_id=parque.id zona_id=zona.numero_da_zona %}">
+                                            Associar lugar
+                                        </a>
+                                        <a class="btn btn-danger" href="{% url 'OperationManagement:desassociar_lugar' parque_id=parque.id zona_id=zona.numero_da_zona %}">
+                                            Desassociar lugar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                <br>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <h2 style="padding: 2em">Lista de lugares</h2>
+
+                    {% for lugar in lugares %}
+                    <br>
+                        {% if lugar.estado == "Ocupado"%}
+                            <div class="col-md-2" style="padding: 1em">
+                                <div class="h-100 border border-dark rounded p-4">
+                                    {{ lugar.numero_do_lugar }}
+                                    <p style="color: red">Ocupado</p>
+                                    <a href="{% url 'OperationManagement:liberar_lugar' parque_id=parque.id lugar_id=lugar.numero_do_lugar %}">
+                                        Liberar lugar
+                                    </a>
+                                    <br>
+                                </div>
+                            </div>
+
+                        {% endif%}
+
+                        {% if lugar.estado == "Livre"%}
+                        <div class="col-md-2" style="padding: 1em">
+                            <div class="h-100 border border-dark rounded p-4">
+                                {{ lugar.numero_do_lugar }}
+                                <p style="color: green">Livre</p>
+                                <a href="{% url 'OperationManagement:ocupar_lugar' parque_id=parque.id lugar_id=lugar.numero_do_lugar %}">
+                                    Ocupar lugar
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    {% endfor %}
+            </div>
+            <br>
+        </div>
+
+        {% for fatura in faturas %}
+        <a class="btn btn-primary" style="margin-top: 1em; margin-left: 1em; color: white" href="{% url 'OperationManagement:reclamar_fatura' parque_id=parque.id fatura_id=fatura.id %}">
+            Reclamar de {{ fatura.nomeEmpresa }}
+        </a>
+        {% endfor %}
+
+        {% for reclamacao in reclamacoes %}
+         <a class="btn btn-primary" style="margin-top: 1em; margin-left: 1em; color: white" href="{% url 'OperationManagement:processar_reclamacao' parque_id=parque.id fatura_id=fatura.id %}">
+                Processar reclamação de {{ reclamacao.faturaid }}
+         </a>
+        {% endfor %}
+
+</body>
+</html>
