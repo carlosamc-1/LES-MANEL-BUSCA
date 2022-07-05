@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load django_tables2 %}
+{% load static %}
+{% block content %}
+
+{% block loggedInContent %}
+<div class="columns">
+    <div class="column is-3">
+        <div class="menu" style="margin-left: 5%">
+            <br>
+            <h2 class="text-primary" style="text-align:center">Consultar Utilizadores</h2>
+            <div class="menu-label" >
+                Filtros Utilizadores:
+            </div>
+            <form method="get">
+                <p class="menu-list">
+                    <li>
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input class="input" style="outline: none;
+                                border: 3px double black;
+                                width: 25%;
+                                color: #757575;
+                                border-radius: 5px;" name="{{ filter.form.nome.name }}" 
+                                    value="{{ filter.form.nome.value|default_if_none:'' }}" type="text"
+                                    placeholder="Nome">
+                                <span class="icon is-left">
+                                    <i class="mdi mdi-magnify mdi-24px"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <label>Tipos:</label>
+                        </div>
+      
+                            {% for value, label in filter.form.fields.groups.choices %}
+                            <div class="field" style="padding-left: 1rem;">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="{{filter.form.groups.name}}"
+                                        value="{{value|stringformat:'s'}}"
+                                        {% if value|stringformat:'s' in filter.form.groups.value %}checked{% endif %}>
+                                    {% if label == "ProfessorUniversitario" %}Professor
+                                    Univesitário{% else %}{{label}}{% endif %}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </li>
+<br>
+                        <div class="field">
+                            <label>Estados:</label>
+                        </div>
+                            {% for value, label in filter.form.fields.valido.choices %}
+                            <div class="field" style="padding-left: 1rem;">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="{{filter.form.valido.name}}"
+                                        value="{{value|stringformat:'s'}}"
+                                        {% if value|stringformat:'s' in filter.form.valido.value %}checked{% endif %}>
+                                    {{label}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                </ul>
+                <br>
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                        <button class="button is-primary is-fullwidth btn btn-sm btn-primary" type="submit">
+                            <span class="icon">
+                                <i class="mdi mdi-magnify"></i>
+                            </span>
+                            <span>Pesquisar</span>
+                        </button>
+                        &nbsp&nbsp&nbsp
+                        <input class="button is-light is-fullwidth btn btn-sm btn-primary" type="reset"
+                            onclick="event.preventDefault(); window.location='{% url 'utilizadores:consultar-utilizadores' %}';"
+                            value="Limpar">
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="column">
+        {% render_table table 'utilizadores/consultar_utilizadores_tabela.html' %}
+    </div>
+</div>
+{% endblock %}
+{% endblock %}
