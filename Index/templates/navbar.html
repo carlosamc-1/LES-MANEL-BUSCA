@@ -1,0 +1,218 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% if request.user.id is not None and request.user.is_staff is False%}
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+            <a href="{% url "homepage" %}" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+            </a>
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="d-none d-lg-inline-flex">Notificações</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Profile updated</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">New user added</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Password changed</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all notifications</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="d-none d-lg-inline-flex">{{request.user}}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="{% url "utilizadores:alterar-password" %}" class="dropdown-item">Alterar Password</a>
+                        <a href="{% url "utilizadores:logout" %}" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div> 
+        </nav>
+        <!-- Navbar End -->
+        
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="{% url 'homepage' %}" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">GESTOR</h3>
+                </a>
+                <div class="navbar-nav w-100">
+                    <a href="{% url 'homepage' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Página Inicial</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Entrada</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'OperationManagement:entrar_parque' %}" class="dropdown-item">Entrar no parque</a>
+                            <a href="{% url 'OperationManagement:sair_parque' %}" class="dropdown-item">Sair do parque</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Parque</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'AdminManagement:parque-list' %}" class="dropdown-item">Ver Parques</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Contrato</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'PaymentManagement:contrato-list' %}" class="dropdown-item">Ver Contratos</a>
+                            <a href="{% url 'PaymentManagement:contrato-parque' %}" class="dropdown-item">Criar Contrato</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Fatura</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'PaymentManagement:fatura' %}" class="dropdown-item">Ver Faturas</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>Reserva</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'ReserveManagement:read_matricula' %}" class="dropdown-item">Ver Reservas</a>
+                            <a href="{% url 'ReserveManagement:create' %}" class="dropdown-item">Criar Reserva</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+    {% elif request.user.id is not None and request.user.is_staff is True %}
+        <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+            </a>
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="d-none d-lg-inline-flex">Notificações</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Profile updated</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">New user added</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Password changed</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all notifications</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="d-none d-lg-inline-flex">{{request.user}}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="{% url "utilizadores:alterar-password" %}" class="dropdown-item">Alterar Password</a>
+                        <a href="{% url "utilizadores:logout" %}" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div> 
+        </nav>
+        <!-- Navbar End -->
+        
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="{% url 'homepage' %}" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">GESTOR</h3>
+                </a>
+                <div class="navbar-nav w-100">
+                    <a href="{% url 'homepage' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Página Inicial</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Gestor</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'AdminManagement:parque-list' %}" class="dropdown-item">Ver Parques</a>
+                            <a href="{% url 'AdminManagement:parque-create' %}" class="dropdown-item">Criar Parques</a>
+                            <a href="{% url 'PaymentManagement:contrato-list' %}" class="dropdown-item">Ver Contratos</a>
+                            <a href="{% url 'PaymentManagement:fatura' %}" class="dropdown-item">Ver Faturas</a>
+                            <a href="{% url 'ReserveManagement:read' %}" class="dropdown-item">Ver Reservas</a>
+                            <a href="{% url 'OperationManagement:operar_parque' %}" class="dropdown-item">Operar Parque</a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        {% else %}
+        <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+            </a>
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item">
+                    <a href={% url "utilizadores:login" %} class="nav-link">
+                        Login
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href={% url "utilizadores:escolher-perfil" %} class="nav-link">
+                        Register
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+        
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="{% url 'homepage' %}" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">GESTOR</h3>
+                </a>
+                <div class="navbar-nav w-100">
+                    <a href="{% url 'homepage' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Página Inicial</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Entrada</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{% url 'OperationManagement:entrar_parque' %}" class="dropdown-item">Entrar no parque</a>
+                            <a href="{% url 'OperationManagement:sair_parque' %}" class="dropdown-item">Sair do parque</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        {% endif %}
+</body>
+</html>

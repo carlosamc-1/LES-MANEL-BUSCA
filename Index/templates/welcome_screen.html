@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<body>
+        <div >
+        <br>
+        <br>
+        <br>
+        <h2 class="text-primary" style="text-align: center">Bem Vindo ao Gestor de Parques</h2>
+        <br>
+        <p style="text-align: center; margin-left:5%; margin-right:5%">A plataforma online para gerir parques e sua utilização desenvolvida com o objetivo de simplificar as tarefas de todos os
+        utilizadores de parques de estacionamento.</p>
+        <br>
+        <div style="text-align: center;position:center;">
+        <a href="{% url 'OperationManagement:entrar_parque' %}" class="btn btn-lg btn-primary">Entrar num parque</a>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}
